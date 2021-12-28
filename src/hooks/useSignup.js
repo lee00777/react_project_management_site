@@ -35,7 +35,7 @@ export const useSignup = () => {
       await res.user.updateProfile({ displayName, photoURL: imgUrl })
 
       // [온라인 여부용] users라는 콜렉션 만들고, document id를 res.user.id로 만들고 저장하기 // 해당 collection이 아직 없으면 새로 만들어줌.
-      await projectFirestore.collection('users').doc(res.user.id).set({          // .add()는 새로운 id를 만들어주고, .doc()은 원하는 걸로 id 찾거나 만들수 있어서 doc사용함.
+      await projectFirestore.collection('users').doc(res.user.uid).set({          // .add()는 새로운 id를 만들어주고, .doc()은 원하는 걸로 id 찾거나 만들수 있어서 doc사용함.
         online:true,
         displayName,
         photoURL:imgUrl

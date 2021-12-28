@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import { useAuthContext } from './context/AuthContext'
+import { useAuthContext } from './hooks/useAuthContext'
 import Dashboard from './pages/dashboard/Dashboard'
 import Project from './pages/project/Project'
 import Login from './pages/login/Login'

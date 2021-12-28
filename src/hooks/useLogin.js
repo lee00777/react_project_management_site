@@ -18,6 +18,9 @@ export const useLogin = () => {
 
       // collection 'users' 의 online prop을 true로 업데이트하기
       await projectFirestore.collection('users').doc(res.user.uid).update({online:true})
+      // const documentRef = projectFirestore.collection('users').doc(res.user.uid)
+      // await documentRef.update({ online: true })
+
       // dispatch login action
       dispatch({ type: 'LOGIN', payload: res.user })
 

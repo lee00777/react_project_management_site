@@ -14,8 +14,9 @@ export const useLogout = () => {
 
     try {
       // users collection에 있는 online property false로 만들기
-      const {uid} = user; 
-      await projectFirestore.collection('users').doc(uid).update({online:false})  // uid 대신 projectAuth가서 projectAuth.currentUser.uid해도 됨..
+      // const { uid } = projectAuth.currentUser
+      console.log('log out page:', user.uid)
+      await projectFirestore.collection('users').doc(user.uid).update({online:false})  // uid 대신 projectAuth가서 projectAuth.currentUser.uid해도 됨..
 
       // sign the user out
       await projectAuth.signOut()
