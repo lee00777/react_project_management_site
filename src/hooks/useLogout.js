@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react'
-import { projectAuth } from '../firebase/config'
+import { projectAuth, projectFirestore } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
 
 export const useLogout = () => {
   const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
-  const { dispatch } = useAuthContext()
+  const { dispatch, user } = useAuthContext()
   
   const logout = async () => {
     setError(null)
     setIsPending(true)
 
     try {
+      // users collection에 있는 online property false로 만들기
+      const {uid} = user; 
+      await projectFirestore.collection('users').doc(uid).update({online:false})  // uid 대신 projectAuth가서 projectAuth.currentUser.uid해도 됨..
+
       // sign the user out
       await projectAuth.signOut()
       

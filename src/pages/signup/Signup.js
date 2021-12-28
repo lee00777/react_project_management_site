@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import { useSignup } from '../../hooks/useSignup'
 import './Signup.css'
-
 
 export default function Signup() {
   const [email, setEmail] = useState('')
@@ -8,6 +8,7 @@ export default function Signup() {
   const [displayName, setDisplayName] = useState('')
   const [thumbnail, setThumbnail] = useState(null)
   const [thumbnailError, setThumbnailError] = useState(null)
+  const { signup, isPending, error } = useSignup()
 
   function handleFileChange(ev){
     setThumbnail(null); // 이미 선택해놓고 다른 이미지 새롭게 선택할때 등을 대비해서, null로 초기화하고 시작하기
@@ -27,14 +28,13 @@ export default function Signup() {
       setThumbnailError("Image file size must be less than 100kb");
       return;
     }
-    console.log("TESTTTTTTT")
     setThumbnailError(null)
     setThumbnail(selected)
   }
 
   function handleSubmit(ev){
     ev.preventDefault();
-    console.log(email, password, displayName, thumbnail)
+    signup(email, password, displayName, thumbnail)
   }
 
   return (
@@ -57,7 +57,9 @@ export default function Signup() {
         <input type="file" required onChange={handleFileChange}/>
         { thumbnailError && <div className='error'>{thumbnailError}</div>}
       </label>
-      <button className='btn'>Sign up</button>
+      { !isPending && <button className='btn'>Sign up</button> }
+      { isPending && <button className='btn' disabled>Loading...</button> }
+      { error && <div className='error'> {error} </div>}
     </form>
   )
 }
