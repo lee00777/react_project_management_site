@@ -44,6 +44,7 @@ export const useFirestore = (collection) => {
       // fire store built-in method "add"
       const addedDocument = await ref.add({ ...doc, createdAt }) // doc은 user가 form 버튼 같은거 눌렀을때 넘기는 data임..
       dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
+      console.log('added FIRESTOREEEEEE')
     }
     catch (err) {
       dispatchIfNotCancelled({ type: 'ERROR', payload: err.message })

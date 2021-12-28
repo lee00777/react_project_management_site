@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import Select from 'react-select'
+import { useAuthContext } from '../../hooks/useAuthContext'
+import { timestamp } from '../../firebase/config'
+import { useFirestore } from '../../hooks/useFirestore'
 import { useCollection } from '../../hooks/useCollection'
 import './Create.css'
 
@@ -20,9 +24,13 @@ export default function Create() {
   const { documents } = useCollection('users')
   const [ users, setUsers] = useState([]);
   const [formError, setFormError] = useState(null)
+  const { user } = useAuthContext()
+  const { addDocument, response } = useFirestore('projects') 
+  const history = useHistory();
 
   useEffect(()=>{
-    if(documents){
+    // assignedUsers에 들어갈 option, value 만들어주기
+    if(documents){  // users collection에 있는 모든 docs
       const options = documents.map(user=>{
         return {value:user, label:user.displayName}
       })
@@ -30,9 +38,10 @@ export default function Create() {
     }
   },[documents])
 
-  function handleSubmit(ev){
+  async function handleSubmit(ev){
     ev.preventDefault()
     setFormError(null)
+    // third part library를 사용함으로 실제 input이 아닌 div들로 되어있어서 따로 additional error check해줘야 함.
     if( !category ){
       setFormError('Please select a project category')
       return;
@@ -42,8 +51,35 @@ export default function Create() {
       return;
     }
 
+    const createdBy = {  //지금 로그인해 있는 유저 정보
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid,
+    }
 
-    console.log(name,details,dueDate, category.value, assignedUsers)
+    const assignedUsersList = assignedUsers.map( assignedUser => {
+      return {
+        displayName: assignedUser.value.displayName,
+        photoURL : assignedUser.value.photoURL,
+        id: assignedUser.value.id
+      }
+    })
+
+    const project = {
+      name,
+      details,
+      dueDate: timestamp.fromDate(new Date(dueDate)),
+      category:category.value,
+      comments:[],
+      createdBy,
+      assignedUsersList,
+    }
+    
+    await addDocument(project)
+    
+    if(!response.error){
+      history.push('/')
+    }
   }
 
   return (
@@ -74,9 +110,9 @@ export default function Create() {
           {/* select here later */}
           <Select options={users} onChange={(option) => setAssignedUsers(option)} isMulti/>
         </label>
-
-        <button className="btn">Add Project</button>
         { formError && <p className='error'>{formError}</p> }
+        <button className="btn">Add Project</button>
+
       </form>
     </div>
   )
