@@ -16,7 +16,7 @@ export default function Project() {
       { document && 
         <>
           <ProjectSummary project={document} /> 
-          <ProjectComments />
+          <ProjectComments project={document}/>
         </>
       }
     </div>
