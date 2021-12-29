@@ -1,14 +1,17 @@
 import React from 'react'
 import Avatar from '../../components/Avatar'
+import { useHistory } from 'react-router-dom'
 import { useFirestore } from '../../hooks/useFirestore'
 import { useAuthContext } from '../../hooks/useAuthContext'
 
 export default function ProjectSummary({project}) {
   const { deleteDocument } = useFirestore('projects')
   const { user } = useAuthContext()
+  const history = useHistory()
 
   function handleClick(ev){
     deleteDocument(project.id)
+    history.push('/')
   }
   return (
     <div>
