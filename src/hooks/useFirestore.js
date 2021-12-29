@@ -17,6 +17,8 @@ const firestoreReducer = (state, action) => {
       return { isPending: false, document: action.payload, success: true, error: null }
     case 'DELETED_DOCUMENT':
       return { isPending: false, document: null, success: true, error: null }
+    case 'UPDATED_DOCUMENT':
+      return { isPending: false, document: action.payload, success: true, error: null }
     case 'ERROR':
       return { isPending: false, document: null, success: false, error: action.payload }
     default:
@@ -44,7 +46,6 @@ export const useFirestore = (collection) => {
       // fire store built-in method "add"
       const addedDocument = await ref.add({ ...doc, createdAt }) // doc은 user가 form 버튼 같은거 눌렀을때 넘기는 data임..
       dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
-      console.log('added FIRESTOREEEEEE')
     }
     catch (err) {
       dispatchIfNotCancelled({ type: 'ERROR', payload: err.message })
@@ -61,6 +62,17 @@ export const useFirestore = (collection) => {
     }
     catch (err) {
       dispatchIfNotCancelled({ type: 'ERROR', payload: 'could not delete' })
+    }
+  }
+  const updateDocument = async(id, updates) => {
+    dispatch({type:'IS_PENDING'})
+    try{
+      const updatedDocument = await ref.doc(id).update(updates) // fire store에서는 update(넘기는 정보), 넘기는 정보만 수정하고 나머지는 그대로 둔다..by default
+      dispatchIfNotCancelled({type:'UPDATED_DOCUMENT', payload:updatedDocument})
+      return updatedDocument
+    }catch{
+      dispatchIfNotCancelled({ type: 'ERROR', payload: 'could not updated' })
+      // return null  // 필요없을것임..그냥 써본 것임..
     }
   }
 

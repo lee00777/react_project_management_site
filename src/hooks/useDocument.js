@@ -9,7 +9,7 @@ export const useDocument = (collection, id) => {
   useEffect(()=>{
     const ref = projectFirestore.collection(collection).doc(id)
     const unsubscribe = ref.onSnapshot(snapshot=>{
-      if(snapshot.data()){  // if id is valid
+      if(snapshot.data()){  // if id is valid one(즉, fire store에 존재하는 id면..)
         setDocument({...snapshot.data(), id:snapshot.id})
         setError(null)
       }else{
