@@ -8,7 +8,7 @@ import DeleteIcon from '../../assets/delete.svg'
 import EditIcon from '../../assets/edit.svg'
 
 export default function ProjectComments({project}) {
-  const { updateDocument, response } = useFirestore('projects')
+  const { updateDocument, deleteDocument, response } = useFirestore('projects')
   const [newComment, setNewComment] = useState('');
   const { user } = useAuthContext();
 
@@ -42,7 +42,6 @@ export default function ProjectComments({project}) {
 
   async function updateComment(){
     let newContent = editedComment
-    
     let newComments = project.comments.map(comment => {
       if(comment.id === oldComment.id){
         let commentToUpdate = {
@@ -55,12 +54,18 @@ export default function ProjectComments({project}) {
         return comment;
       }
     })
-    
     await updateDocument(project.id, {comments: newComments})
     setIsEditIconClicked(false)
   }
+
+  async function handleDeleteComment(target){
+    let commentsAfterDeleted = project.comments.filter(comment => {
+      return comment.id !== target.id
+    })
+    await updateDocument(project.id, {comments: commentsAfterDeleted})
+  }
   
-  useEffect(()=>{},[])
+  
   return (
     <div className='project-comments'>
       <h4>Project Comments</h4>
@@ -70,18 +75,16 @@ export default function ProjectComments({project}) {
             <div className='comment-author'>
               <Avatar src={comment.photoURL}/>
               <p>{comment.displayName}</p>
-              {/* here */}
               { user.uid === comment.commentCreatorId && (
                 <div className='comment-edit-options'>
                   <img src={EditIcon} alt="edit icon" onClick={()=>{handleEditComment(comment)}}/>
-                  <img src={DeleteIcon} alt="delete icon"/>
+                  <img src={DeleteIcon} alt="delete icon"onClick={()=>{handleDeleteComment(comment)}}/>
                 </div>
               )}
             </div>
             <div className='comment-date'>
               <p>{formatDistanceToNow(comment.createdAt.toDate(),{addSuffix:true})}</p>
             </div>
-            {/* 여기자체를 바꾸기 */}
             { ! isEditIconClicked && (
               <div className='comment-content'>
                 { comment.isEdited && <p>{comment.content} (edited) </p> }
