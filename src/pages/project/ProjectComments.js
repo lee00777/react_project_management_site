@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Avatar from '../../components/Avatar';
 import { timestamp } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
@@ -8,7 +8,7 @@ import DeleteIcon from '../../assets/delete.svg'
 import EditIcon from '../../assets/edit.svg'
 
 export default function ProjectComments({project}) {
-  const { updateDocument, deleteDocument, response } = useFirestore('projects')
+  const { updateDocument, response } = useFirestore('projects')
   const [newComment, setNewComment] = useState('');
   const { user } = useAuthContext();
 
@@ -28,7 +28,6 @@ export default function ProjectComments({project}) {
       id: Math.random() // 그러므로 따로 id가 자동생성되지 않는데, 나중에 mapping할때 쓸 용도로 그냥 유니크한 key값 만들어 주는 것임.
     }
     await updateDocument(project.id, {comments: [...project.comments, commentToAdd]})
-
     if(!response.error){
       setNewComment('')
     }
@@ -65,7 +64,6 @@ export default function ProjectComments({project}) {
     await updateDocument(project.id, {comments: commentsAfterDeleted})
   }
   
-  
   return (
     <div className='project-comments'>
       <h4>Project Comments</h4>
@@ -98,7 +96,6 @@ export default function ProjectComments({project}) {
             )}
             { isEditIconClicked && oldComment.id === comment.id && (
               <div className='comment-content'>
-                {/* <div className='edit'>{comment.content}</div>  */}
                 <label htmlFor='updatedComment'></label>
                 <input name="updatedComment" type="textarea" value={editedComment} onChange={(ev)=>{setEditedComment(ev.target.value)}}/>
                 <div className="btnParent">
