@@ -13,7 +13,7 @@ export default function ProjectComments({project}) {
   const { user } = useAuthContext();
 
   const [oldComment, setOldComment] = useState(null);
-  const [editedComment, setEditedComment] = useState('')
+  const [editedComment, setEditedComment] = useState(null)
   const [isEditIconClicked, setIsEditIconClicked] = useState(false)
 
   async function handleSubmit(ev){
@@ -34,16 +34,30 @@ export default function ProjectComments({project}) {
     }
   }
 
-  async function handleEditComment(id){
-    // ev.preventDefault();
-    setIsEditIconClicked(true)
-    // 정보 가져오기 & css 스타일 바꾸기
-    let oldComment = project.comments.find(comment => {
-      return comment.id === id
+  function handleEditComment(comment){
+    setEditedComment(comment.content)
+    setIsEditIconClicked(true) 
+    setOldComment(comment) // comment object
+  }
+
+  async function updateComment(){
+    let newContent = editedComment
+    
+    let newComments = project.comments.map(comment => {
+      if(comment.id === oldComment.id){
+        let commentToUpdate = {
+          ...oldComment,
+          content: newContent,
+          isEdited: true
+        }
+        return commentToUpdate
+      }else {
+        return comment;
+      }
     })
-    setOldComment(oldComment)
-    console.log(oldComment.content)
-    // 새로운 정보 firestore에 저장하기
+    
+    await updateDocument(project.id, {comments: newComments})
+    setIsEditIconClicked(false)
   }
   
   useEffect(()=>{},[])
@@ -59,7 +73,7 @@ export default function ProjectComments({project}) {
               {/* here */}
               { user.uid === comment.commentCreatorId && (
                 <div className='comment-edit-options'>
-                  <img src={EditIcon} alt="edit icon" onClick={()=>{handleEditComment(comment.id)}}/>
+                  <img src={EditIcon} alt="edit icon" onClick={()=>{handleEditComment(comment)}}/>
                   <img src={DeleteIcon} alt="delete icon"/>
                 </div>
               )}
@@ -70,7 +84,8 @@ export default function ProjectComments({project}) {
             {/* 여기자체를 바꾸기 */}
             { ! isEditIconClicked && (
               <div className='comment-content'>
-                <p>{comment.content}</p> 
+                { comment.isEdited && <p>{comment.content} (edited) </p> }
+                { !comment.isEdited && <p>{comment.content}</p> }
               </div>
             )}
             { isEditIconClicked && oldComment.id !== comment.id && (
@@ -80,7 +95,13 @@ export default function ProjectComments({project}) {
             )}
             { isEditIconClicked && oldComment.id === comment.id && (
               <div className='comment-content'>
-                <p className='edit'>{comment.content}</p> 
+                {/* <div className='edit'>{comment.content}</div>  */}
+                <label htmlFor='updatedComment'></label>
+                <input name="updatedComment" type="textarea" value={editedComment} onChange={(ev)=>{setEditedComment(ev.target.value)}}/>
+                <div className="btnParent">
+                  <button className='cancelBtn' onClick={()=>{setIsEditIconClicked(false)}}>Cancel</button>
+                  <button className='saveBtn' onClick={updateComment}>Save</button>
+                </div>
               </div>
             )} 
           </li>

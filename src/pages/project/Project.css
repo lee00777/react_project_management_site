@@ -84,8 +84,30 @@
 .comment-content {
   color: var(--text-color);
   font-size: 0.9em;
+  display: flex;
+  /* align-items: center; */
 }
-.comment-content .edit {
+.btnParent {
+  padding-left: 10px;
+  margin-left: auto;
+}
+.cancelBtn,
+.saveBtn {
+  background: #fff;
+  padding: 4px 4px;
+  width: 55px;
+  border-radius: 4px;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.8em;
+  border: 1px solid var(--primary-color);
+}
+.btn:hover {
+  color: #fff;
+  background-color: var(--primary-color);
+}
+
+/* .comment-content .edit {
   border: 1px solid pink;
   background-color: pink;
-}
+} */
