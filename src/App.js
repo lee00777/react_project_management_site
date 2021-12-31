@@ -13,7 +13,7 @@ import OnlineUsers from './components/OnlineUsers'
 function App() {
   const { user, authIsReady } = useAuthContext()
   return (
-    <div className="App">
+    <div className={!user && authIsReady? 'App bg' : 'App'}>
       { authIsReady && (
         <BrowserRouter>
           { user && <Sidebar /> }

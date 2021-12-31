@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
 import './Navbar.css'
-import Temple from '../assets/temple.svg'
+import Logo from '../assets/event.svg'
 
 export default function Navbar() {
   const { logout, isPending } = useLogout()
@@ -13,8 +13,8 @@ export default function Navbar() {
     <div className='navbar'>
       <ul>
         <li className='logo'>
-          <img src={Temple} alt="logo"/>
-          <span>GY</span>
+          {/* <img src={Logo} alt="logo"/> */}
+          <span>PROJECT PLANNER</span>
         </li>
         { !user && (<>
             <li>

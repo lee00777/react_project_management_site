@@ -11,21 +11,37 @@
   justify-content: flex-end;
 }
 .navbar .logo {
-  font-weight: bold;
-  color: var(--heading-color);
+  /* font-weight: bold; */
+  /* color: var(--primary-color); */
+  /* color: var(--logo-color);
   letter-spacing: 1px;
-  display: flex;
-  align-items: center;
+  display: flex; */
+  /* align-items: center; */
+
+  /*  */
+  color: #fff;
   margin-right: auto;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  border: 2px solid;
+  border-image-slice: 1;
+  border-width: 3;
+  border-image-source: linear-gradient(to left, #f0f0f0, #aee1f9);
+  padding: 1rem;
 }
 .navbar .logo img {
   margin-right: 10px;
-  filter: invert(25%);
+  filter: invert(85%);
   width: 36px;
   margin-top: -8px;
 }
 .navbar a {
-  color: #333;
+  color: #fff;
   text-decoration: none;
+  font-size: 1.1rem;
   margin-right: 20px;
+}
+.navbar a:hover {
+  color: var(--logo-color);
+  text-decoration: underline;
 }
