@@ -27,3 +27,7 @@
 .project-filter button.active {
   color: var(--primary-color);
 }
+.dashboard-title {
+  font-size: 1.3rem;
+  color: #fff;
+}

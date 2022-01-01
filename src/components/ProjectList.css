@@ -13,8 +13,9 @@
   color: inherit;
 }
 .project-list h4 {
-  font-size: 0.9em;
+  font-size: 1em;
   color: var(--heading-color);
+  margin-bottom: 7px;
 }
 .project-list p {
   color: var(--text-color);

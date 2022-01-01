@@ -4,12 +4,12 @@
 :root {
   --heading-color: #444;
   --text-color: #999;
-  /* --primary-color: #8d69f1; */
-  --primary-color: #957dad;
-  --logo-color: #e6cfff;
+  --primary-color: #5b5eb0;
   --highlight-color: #d13267;
-  --bg-color: #f4f4f4;
-  /* --bg-color: #8548ff; */
+  --hover-color: #aba4fe;
+  --bg-color: #282c34;
+  /* --primary-color: #957dad; */
+  /* --bg-color: #f4f4f4; */
 }
 
 /* base styles */
@@ -37,7 +37,8 @@ ul {
 /* layout */
 .page-title {
   font-size: 1em;
-  color: var(--heading-color);
+  /* color: var(--heading-color); */
+  color: #fff;
   display: inline-block;
 }
 .btn {
@@ -58,6 +59,7 @@ ul {
 label {
   display: block;
   margin: 24px auto;
+  color: #fff;
 }
 label span {
   display: block;
@@ -68,6 +70,7 @@ textarea {
   padding: 8px 6px;
   font-size: 1em;
   color: #777;
+  /* color: #fff; */
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #ddd;
