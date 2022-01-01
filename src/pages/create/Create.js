@@ -99,20 +99,19 @@ export default function Create() {
           <input required type="date" onChange={(e) => setDueDate(e.target.value)}  value={dueDate} />
         </label>
 
-        <label>
+        <label >
           <span>Project category:</span>
           {/* npm install react-select 사용할건데, options에는 [{label: xx, value:zz},{label:aa, value:bb}]이런형태로 넣어준다.*/}
-          <Select options={categories} onChange={(option)=>{setCategory(option)}}/>
+          <Select className='options' options={categories} onChange={(option)=>{setCategory(option)}}/>
         </label>
 
-        <label>
+        <label >
           <span>Assign to:</span>
           {/* select here later */}
-          <Select options={users} onChange={(option) => setAssignedUsers(option)} isMulti/>
+          <Select className='options' options={users} onChange={(option) => setAssignedUsers(option)} isMulti/>
         </label>
         { formError && <p className='error'>{formError}</p> }
         <button className="btn">Add Project</button>
-
       </form>
     </div>
   )

@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import React, { useState } from 'react'
 import ProjectList from '../../components/ProjectList';
 import { useCollection } from '../../hooks/useCollection'

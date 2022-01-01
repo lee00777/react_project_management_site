@@ -5,3 +5,6 @@
 .create-form h2 {
   font-size: 1.3rem;
 }
+.create-form .options {
+  color: #777;
+}

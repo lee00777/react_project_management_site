@@ -37,3 +37,13 @@
   width: 30px;
   height: 30px;
 }
+.no-project-msg {
+  font-size: 1.2rem;
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+}
+.user-detail {
+  border-top: 1px solid rgb(196, 195, 195);
+  padding-top: 13px;
+}

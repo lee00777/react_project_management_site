@@ -7,7 +7,7 @@ export default function ProjectList({projects}) {
 
   return (
     <div className='project-list'>
-      { projects.length === 0 && <p>No projects yet</p>}
+      { projects.length === 0 && <span className='no-project-msg'>No projects yet</span>}
       { projects.map( project => {
         return (
           <Link to={`/projects/${project.id}`}  key={project.id}>

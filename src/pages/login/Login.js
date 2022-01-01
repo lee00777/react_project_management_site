@@ -23,8 +23,8 @@ export default function Login() {
         <input type="password" required value={password} onChange={(ev)=>{setPassword(ev.target.value)}}/>
       </label>
       
-      { !isPending && <button className='btn'>Login</button> }
-      { isPending && <button className='btn' disabled>Loading...</button> }
+      { !isPending && <div className='log-in'><button className='btn'>Login</button></div>}
+      { isPending && <div className='log-in'><button className='btn' disabled>Loading...</button></div>}
       { error && <div className='error'> {error} </div>}
   </form>
   )

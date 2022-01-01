@@ -10,3 +10,8 @@
 .auth-form label {
   color: #000;
 }
+.sign-up {
+  /* margin: 0 auto; */
+  text-align: center;
+  padding-top: 15px;
+}
