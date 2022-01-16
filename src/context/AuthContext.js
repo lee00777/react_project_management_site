@@ -30,6 +30,7 @@ export const AuthContextProvider = ({ children }) => {
     // 단 firestore의 snapshot과 비슷해서 onAuthStateChanged도 처음 useEffect로 실행되고, !! 한번 실행되면 !! 계속 authentication observe하다가 change (sign in, log in, log out)가 있을때마다 실행된다.
     // 그러므로, 맨 처음 authentication state상태를 맨 처음에만 체크하고, 그 다음에는 필요없으므로 unsub()를 해야함.. 
     const unsub = projectAuth.onAuthStateChanged(user => {
+      console.log("USERRRRR", user)
       dispatch({ type: 'AUTH_IS_READY', payload: user })
       unsub()  // 맨 처음 앱 시작될때 실행되고 바로 정지시켜라..
     })

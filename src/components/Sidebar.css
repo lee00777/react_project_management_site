@@ -1,11 +1,11 @@
 .sidebar {
   width: 300px;
-  min-width: 230px;
+  /* min-width: 230px; */
   /* background: var(--primary-color); */
   background: var(--bg-color);
   min-height: 100vh;
   box-sizing: border-box;
-  /* position: relative; */
+  position: relative;
   color: #fff;
   border-right: 1px solid #fff;
 }

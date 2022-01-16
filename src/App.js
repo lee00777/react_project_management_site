@@ -9,6 +9,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import OnlineUsers from './components/OnlineUsers'
+import Chat from './components/Chat'
 
 function App() {
   const { user, authIsReady } = useAuthContext()

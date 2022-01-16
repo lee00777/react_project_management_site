@@ -13,7 +13,7 @@ export default function Navbar() {
       <ul>
         <li className='logo'>
           {/* <img src={Logo} alt="logo"/> */}
-          <span>PROJECT PLANNER</span>
+          <p>PROJECT PLANNER</p>
         </li>
         { !user && (<>
             <li>

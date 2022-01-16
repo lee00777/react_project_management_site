@@ -13,6 +13,9 @@ service cloud.firestore {
       allow read, create, update: if request.auth != null;
       allow delete: if request.auth.uid == resource.data.createdBy.id    // resource는 doc자체를 의미함. 즉, resource.data는 doc의 데이터들을 의미함.
     }
+    match /chats/{chat_id}{
+      allow read, write: if true; 
+    }
   }
 }
 
