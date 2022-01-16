@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCollection } from '../hooks/useCollection' 
 import Avatar from './Avatar'
 import Chat from './Chat'
@@ -9,12 +9,13 @@ export default function OnlineUsers() {
   const [chatUserId, setChatUserId] = useState(null)
   const [chatUserName, setChatUserName] = useState(null)
   const [chatUserPic, setChatUserPic] = useState(null)
-
+  
   function handleChatClick(userId, userName, userPic){
     setChatUserId(userId)
     setChatUserName(userName)
     setChatUserPic(userPic)
   }
+
 
   return (
     <div className='user-list-chat'>

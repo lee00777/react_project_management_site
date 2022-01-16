@@ -7,7 +7,7 @@
   right: 0;
   bottom: 0;
   box-sizing: border-box;
-  background: pink;
+  background: lightgray;
 }
 .info {
   width: 100%;
@@ -28,8 +28,11 @@
 /* chat */
 .chats {
   background-color: rgb(205, 205, 205);
+  height: 83%;
+  overflow: scroll;
   margin-top: 10px;
-  padding-left: 10px;
+  margin-bottom: 10px;
+  /* padding-left: 10px; */
 }
 /* msg */
 .chatMsg {
@@ -43,12 +46,58 @@
   display: flex;
   align-items: center;
   background-color: #fff;
+  height: 70%;
 }
 .msg input {
   /* width: 85%; */
+  font-size: 1rem;
 }
 .sendIcon {
   width: 20px;
   height: 20px;
   margin: 0 5px;
+}
+.msgParent {
+  background-color: rgb(120, 177, 227);
+  border-radius: 7px;
+  width: 90%;
+  margin: 10px auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* display: grid; */
+  /* grid-template-rows: 1fr 1fr; */
+}
+
+.msgCard {
+  display: grid;
+  width: 100%;
+  height: auto;
+  grid-template-areas:
+    'img name '
+    'img ago';
+  color: #f0f0f0;
+  font-size: 1rem;
+  /* margin: 0; */
+
+  grid-template-rows: 30px 30px;
+}
+.msgCard .avatar {
+  grid-area: img;
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  margin-left: 10px;
+}
+.msgCard .cardName {
+  grid-area: name;
+}
+/* .msgCard .cardDate {
+  grid-area: date;
+} */
+.ago {
+  grid-area: ago;
+}
+.cardMsg {
+  margin-left: 10px;
+  color: #fff;
 }
