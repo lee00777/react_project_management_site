@@ -20,8 +20,9 @@ Users will be notified when they are assigned to the project.
 - A list of projects will be shown on dashboard
 - Filter option is provided
 - Check online users
+- Have a chat with users
 
-<img width="1705" alt="dashboarrd" src="https://user-images.githubusercontent.com/72294886/148105821-aaec0b32-d3ff-4b54-9020-84256fcc40b2.png">
+<img width="1705" alt="dashboarrd" src="https://user-images.githubusercontent.com/72294886/149863764-a0611c2b-0010-444e-b16e-b7105f963bcd.png">
 
 - Check the projecgt in detail. 
 - Share opinions by adding comments. 
