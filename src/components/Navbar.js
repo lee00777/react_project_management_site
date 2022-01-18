@@ -12,7 +12,6 @@ export default function Navbar() {
     <div className='navbar'>
       <ul>
         <li className='logo'>
-          {/* <img src={Logo} alt="logo"/> */}
           <p>PROJECT PLANNER</p>
         </li>
         { !user && (<>
@@ -29,7 +28,6 @@ export default function Navbar() {
             { isPending && <button className='btn logout' disabled>Logging out...</button> }
           </li>
         </>)}
-
       </ul>
     </div>
   )

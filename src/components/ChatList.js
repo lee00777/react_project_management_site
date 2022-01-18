@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import { timestamp } from '../firebase/config'
 import Avatar from './Avatar'
 import './Chat.css'
 
 export default function ChatList({comment, fromComment}) {
   const [allMsg, setAllMsg] = useState([])
-
 
   useEffect(()=>{
     if(comment){
@@ -15,8 +13,7 @@ export default function ChatList({comment, fromComment}) {
     if(fromComment){
       setAllMsg(fromComment)
     }
-    // sortMsg(allMsg)
-    console.log("allmsg:", typeof allMsg, allMsg)
+
   },[comment, fromComment, allMsg])
 
   function sortMsg(msg){
@@ -28,12 +25,12 @@ export default function ChatList({comment, fromComment}) {
   }
 
   return <>
-    {allMsg && 
+    {allMsg &&   
       <div className='msgParent'>
         <div className='msgCard'>
           <Avatar className="cardAvatar" src={allMsg.talkWithPhotoURL}/>
           <p className='cardName'>{allMsg.talkWith}</p>
-          {/* <p className='ago'>{formatDistanceToNow(allMsg.createdAt.toDate(),{addSuffix:true})}</p> */}
+          {allMsg.createdAt && <p className='ago'>{formatDistanceToNow(allMsg.createdAt.toDate(),{addSuffix:true})}</p>}   
         </div>
         <p className='cardMsg'>{allMsg.content}</p>
       </div>

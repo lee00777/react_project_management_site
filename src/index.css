@@ -8,8 +8,6 @@
   --highlight-color: #d13267;
   --hover-color: #aba4fe;
   --bg-color: #282c34;
-  /* --primary-color: #957dad; */
-  /* --bg-color: #f4f4f4; */
 }
 
 /* base styles */
@@ -37,7 +35,6 @@ ul {
 /* layout */
 .page-title {
   font-size: 1em;
-  /* color: var(--heading-color); */
   color: #fff;
   display: inline-block;
 }

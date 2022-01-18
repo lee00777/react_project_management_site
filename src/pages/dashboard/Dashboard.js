@@ -6,7 +6,7 @@ import ProjectFilter from './ProjectFilter';
 import { useAuthContext } from '../../hooks/useAuthContext'
 
 export default function Dashboard() {
-  const { documents, error } = useCollection('projects');  // snapshot이기 때문에 documents들이 실시간 업데이트 된다.
+  const { documents, error } = useCollection('projects');  
   const [currentFilter, setCurrentFilter] = useState('All')
   const { user } = useAuthContext()
 

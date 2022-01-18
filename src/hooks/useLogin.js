@@ -13,15 +13,9 @@ export const useLogin = () => {
     setIsPending(true)
   
     try {
-      // login
       const res = await projectAuth.signInWithEmailAndPassword(email, password)
-
-      // collection 'users' 의 online prop을 true로 업데이트하기
       await projectFirestore.collection('users').doc(res.user.uid).update({online:true})
-
-      // dispatch login action
       dispatch({ type: 'LOGIN', payload: res.user })
-
       if (!isCancelled) {
         setIsPending(false)
         setError(null)

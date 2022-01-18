@@ -29,8 +29,7 @@ export default function Create() {
   const history = useHistory();
 
   useEffect(()=>{
-    // assignedUsers에 들어갈 option, value 만들어주기
-    if(documents){  // users collection에 있는 모든 docs
+    if(documents){  
       const options = documents.map(user=>{
         return {value:user, label:user.displayName}
       })
@@ -41,7 +40,7 @@ export default function Create() {
   async function handleSubmit(ev){
     ev.preventDefault()
     setFormError(null)
-    // third part library를 사용함으로 실제 input이 아닌 div들로 되어있어서 따로 additional error check해줘야 함.
+  
     if( !category ){
       setFormError('Please select a project category')
       return;
@@ -51,7 +50,7 @@ export default function Create() {
       return;
     }
 
-    const createdBy = {  //지금 로그인해 있는 유저 정보
+    const createdBy = {  
       displayName: user.displayName,
       photoURL: user.photoURL,
       id: user.uid,
@@ -101,7 +100,6 @@ export default function Create() {
 
         <label >
           <span>Project category:</span>
-          {/* npm install react-select 사용할건데, options에는 [{label: xx, value:zz},{label:aa, value:bb}]이런형태로 넣어준다.*/}
           <Select className='options' options={categories} onChange={(option)=>{setCategory(option)}}/>
         </label>
 

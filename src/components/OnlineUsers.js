@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useCollection } from '../hooks/useCollection' 
 import Avatar from './Avatar'
 import Chat from './Chat'
 import './OnlineUsers.css'
-import { useFirestore } from '../hooks/useFirestore';
-import { useDocument } from '../hooks/useDocument'
 
 export default function OnlineUsers() {
   const { error, documents } = useCollection('users')
@@ -22,7 +20,6 @@ export default function OnlineUsers() {
     setChatUserId(null)
   }
 
-
   return (
     <div className='user-list-chat'>
       <div className='user-list'>
@@ -38,6 +35,5 @@ export default function OnlineUsers() {
       </div>
       { chatUserId && <Chat closeChat={closeChat} userId={chatUserId} userName={chatUserName} userPic={chatUserPic}/>}
     </div>
-
   )
 }

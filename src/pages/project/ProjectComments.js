@@ -18,14 +18,13 @@ export default function ProjectComments({project}) {
 
   async function handleSubmit(ev){
     ev.preventDefault()
-    // 주의! 새롭게 document를 만드는게 아니라, 현재 클릭한 (= 존재하는 )document에 update하는 것임. 
     const commentToAdd = {
       displayName: user.displayName,
       photoURL: user.photoURL,
       content: newComment,
       createdAt: timestamp.fromDate(new Date()),
       commentCreatorId: user.uid,
-      id: Math.random() // 그러므로 따로 id가 자동생성되지 않는데, 나중에 mapping할때 쓸 용도로 그냥 유니크한 key값 만들어 주는 것임.
+      id: Math.random() 
     }
     await updateDocument(project.id, {comments: [...project.comments, commentToAdd]})
     if(!response.error){

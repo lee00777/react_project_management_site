@@ -13,18 +13,13 @@ export const useLogout = () => {
     setIsPending(true)
 
     try {
-      // users collection에 있는 online property false로 만들기
-      // const { uid } = projectAuth.currentUser
-      console.log('log out page:', user.uid)
-      await projectFirestore.collection('users').doc(user.uid).update({online:false})  // uid 대신 projectAuth가서 projectAuth.currentUser.uid해도 됨..
-
+      await projectFirestore.collection('users').doc(user.uid).update({online:false})  
       // sign the user out
       await projectAuth.signOut()
       
       // dispatch logout action
       dispatch({ type: 'LOGOUT' })
 
-      // isCancelled가 false일때에만 실행해라.. (해당 component가 unmounted되면 isCancelled는 true가 되므로 아래의 code 실행하지 않는다)
       if (!isCancelled) {
         setIsPending(false)
         setError(null)
@@ -39,7 +34,6 @@ export const useLogout = () => {
   }
 
   useEffect(() => {
-    // it will run WHEN the component is UNMOUNTED
     return () => setIsCancelled(true)
   }, [])
 

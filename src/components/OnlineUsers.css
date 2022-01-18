@@ -2,13 +2,10 @@
   background: #fbfbfb;
 }
 .user-list {
-  /* display: grid; */
   width: 250px;
   min-width: 230px;
-  /* height: 100vh; */
   padding: 30px;
   box-sizing: border-box;
-  /* background: #fbfbfb; */
   color: var(--heading-color);
   cursor: pointer;
 }
