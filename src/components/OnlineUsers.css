@@ -10,6 +10,7 @@
   box-sizing: border-box;
   /* background: #fbfbfb; */
   color: var(--heading-color);
+  cursor: pointer;
 }
 .user-list h2 {
   text-align: right;

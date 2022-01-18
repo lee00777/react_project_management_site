@@ -60,7 +60,7 @@
 .msgParent {
   background-color: rgb(120, 177, 227);
   border-radius: 7px;
-  width: 90%;
+  width: 95%;
   margin: 10px auto;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -90,14 +90,17 @@
 }
 .msgCard .cardName {
   grid-area: name;
+  margin-left: -2px;
 }
 /* .msgCard .cardDate {
   grid-area: date;
 } */
 .ago {
   grid-area: ago;
+  margin-left: -2px;
 }
 .cardMsg {
   margin-left: 10px;
   color: #fff;
+  height: auto;
 }

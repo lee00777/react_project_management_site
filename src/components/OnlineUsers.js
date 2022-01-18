@@ -3,17 +3,23 @@ import { useCollection } from '../hooks/useCollection'
 import Avatar from './Avatar'
 import Chat from './Chat'
 import './OnlineUsers.css'
+import { useFirestore } from '../hooks/useFirestore';
+import { useDocument } from '../hooks/useDocument'
 
 export default function OnlineUsers() {
   const { error, documents } = useCollection('users')
   const [chatUserId, setChatUserId] = useState(null)
   const [chatUserName, setChatUserName] = useState(null)
   const [chatUserPic, setChatUserPic] = useState(null)
-  
+
   function handleChatClick(userId, userName, userPic){
     setChatUserId(userId)
     setChatUserName(userName)
     setChatUserPic(userPic)
+  }
+
+  function closeChat(){
+    setChatUserId(null)
   }
 
 
@@ -30,7 +36,7 @@ export default function OnlineUsers() {
         })}
         { error && <div className='error'>{error}</div>}
       </div>
-      { chatUserId && <Chat userId={chatUserId} userName={chatUserName} userPic={chatUserPic}/>}
+      { chatUserId && <Chat closeChat={closeChat} userId={chatUserId} userName={chatUserName} userPic={chatUserPic}/>}
     </div>
 
   )

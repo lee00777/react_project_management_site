@@ -11,7 +11,6 @@ export const useDocument = (collection, id) => {
     const ref = projectFirestore.collection(collection).doc(id)
     const unsubscribe = ref.onSnapshot(snapshot=>{
       if(snapshot.data()){  // if id is valid one(즉, fire store에 존재하는 id면..)
-        console.log('real time !!')
         setDocument({...snapshot.data(), id:snapshot.id})
         setError(null)
       }else{
