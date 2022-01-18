@@ -1,6 +1,6 @@
 # :movie_camera: Live Demo 
 
-https://project-management-site-e15f2.web.app/login
+https://awesome-darwin-e3b817.netlify.app
 
 # Project management site 
 
