@@ -84,3 +84,46 @@ textarea {
   padding: 8px;
   margin: 10px 0;
 }
+.loader {
+  width: 10px;
+  height: 30px;
+  display: inline-block;
+  transform-origin: bottom center;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  animation: loader 1.2s linear infinite;
+}
+.loader1 {
+  animation-delay: 0.1s;
+}
+.loader2 {
+  animation-delay: 0.2s;
+}
+.loader3 {
+  animation-delay: 0.3s;
+}
+.loader4 {
+  animation-delay: 0.4s;
+}
+.loader5 {
+  animation-delay: 0.5s;
+}
+@keyframes loader {
+  0% {
+    transform: scaleY(0.1);
+    background: none;
+  }
+  50% {
+    transform: scaleY(1);
+    background: rgb(178, 190, 216);
+  }
+  100% {
+    transform: scaleY(0.1);
+    background: transparent;
+  }
+}
+.loading {
+  color: #fff;
+  text-align: center;
+  font-size: 1.3rem;
+}

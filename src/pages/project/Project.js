@@ -4,6 +4,7 @@ import { useDocument } from '../../hooks/useDocument'
 import { useParams } from 'react-router-dom'
 import ProjectSummary from './ProjectSummary'
 import ProjectComments from './ProjectComments'
+import Loader from '../../components/Loader'
 
 export default function Project() {
   const { id } = useParams()
@@ -12,7 +13,7 @@ export default function Project() {
   return (
     <div className='project-details'>
       { error && <p className='error'>{error}</p> }
-      { !error && !document && <p className='loading'>Loading....</p>}
+      { !error && !document && <p className='loading'> Loading...</p>}
       { document && 
         <>
           <ProjectSummary project={document} /> 
