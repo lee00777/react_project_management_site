@@ -8,6 +8,7 @@ export default function Signup() {
   const [displayName, setDisplayName] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailError, setThumbnailError] = useState(null);
+  const [pwdError, setPwdError] = useState(null);
   const { signup, isPending, error } = useSignup();
 
   function handleFileChange(ev) {
@@ -30,6 +31,16 @@ export default function Signup() {
     }
     setThumbnailError(null);
     setThumbnail(selected);
+  }
+
+  function handlePwd(ev) {
+    setPassword(null);
+    if (ev.target.value.length < 6) {
+      setPwdError("Password should contain at least 6 characters");
+      return;
+    }
+    setPwdError(null);
+    setPassword(ev.target.value);
   }
 
   function handleSubmit(ev) {
@@ -57,10 +68,12 @@ export default function Signup() {
           type="password"
           required
           value={password}
-          onChange={(ev) => {
-            setPassword(ev.target.value);
-          }}
+          // onChange={(ev) => {
+          //   setPassword(ev.target.value);
+          // }}
+          onChange={handlePwd}
         />
+        {pwdError && <div className="error">{pwdError}</div>}
       </label>
       <label>
         <span>Display name : </span>
